@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20FBE78028BBAD2300609687 /* Connect_ONG_MobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE77F28BBAD2300609687 /* Connect_ONG_MobileApp.swift */; };
-		20FBE78228BBAD2300609687 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE78128BBAD2300609687 /* ContentView.swift */; };
+		20FBE78228BBAD2300609687 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE78128BBAD2300609687 /* HomeView.swift */; };
 		20FBE78428BBAD2400609687 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FBE78328BBAD2400609687 /* Assets.xcassets */; };
 		20FBE78728BBAD2400609687 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FBE78628BBAD2400609687 /* Preview Assets.xcassets */; };
 		20FBE78928BBAD2400609687 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE78828BBAD2400609687 /* Persistence.swift */; };
@@ -16,6 +16,8 @@
 		20FBE79628BBAD2500609687 /* Connect_ONG_MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE79528BBAD2500609687 /* Connect_ONG_MobileTests.swift */; };
 		20FBE7A028BBAD2500609687 /* Connect_ONG_MobileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE79F28BBAD2500609687 /* Connect_ONG_MobileUITests.swift */; };
 		20FBE7A228BBAD2500609687 /* Connect_ONG_MobileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE7A128BBAD2500609687 /* Connect_ONG_MobileUITestsLaunchTests.swift */; };
+		20FBE7B228BBEC5B00609687 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE7B128BBEC5B00609687 /* RegisterView.swift */; };
+		20FBE97928BC43D800609687 /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE97828BC43D800609687 /* Validations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +40,7 @@
 /* Begin PBXFileReference section */
 		20FBE77C28BBAD2300609687 /* Connect-ONG-Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Connect-ONG-Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		20FBE77F28BBAD2300609687 /* Connect_ONG_MobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connect_ONG_MobileApp.swift; sourceTree = "<group>"; };
-		20FBE78128BBAD2300609687 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		20FBE78128BBAD2300609687 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		20FBE78328BBAD2400609687 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20FBE78628BBAD2400609687 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20FBE78828BBAD2400609687 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -48,6 +50,8 @@
 		20FBE79B28BBAD2500609687 /* Connect-ONG-MobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Connect-ONG-MobileUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		20FBE79F28BBAD2500609687 /* Connect_ONG_MobileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connect_ONG_MobileUITests.swift; sourceTree = "<group>"; };
 		20FBE7A128BBAD2500609687 /* Connect_ONG_MobileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connect_ONG_MobileUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		20FBE7B128BBEC5B00609687 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		20FBE97828BC43D800609687 /* Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +102,10 @@
 		20FBE77E28BBAD2300609687 /* Connect-ONG-Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				20FBE97728BC43C600609687 /* Helpers */,
+				20FBE7B028BBEC4400609687 /* Register */,
+				20FBE7AE28BBEBE800609687 /* Home */,
 				20FBE77F28BBAD2300609687 /* Connect_ONG_MobileApp.swift */,
-				20FBE78128BBAD2300609687 /* ContentView.swift */,
 				20FBE78328BBAD2400609687 /* Assets.xcassets */,
 				20FBE78828BBAD2400609687 /* Persistence.swift */,
 				20FBE78A28BBAD2400609687 /* Connect_ONG_Mobile.xcdatamodeld */,
@@ -131,6 +137,30 @@
 				20FBE7A128BBAD2500609687 /* Connect_ONG_MobileUITestsLaunchTests.swift */,
 			);
 			path = "Connect-ONG-MobileUITests";
+			sourceTree = "<group>";
+		};
+		20FBE7AE28BBEBE800609687 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				20FBE78128BBAD2300609687 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		20FBE7B028BBEC4400609687 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				20FBE7B128BBEC5B00609687 /* RegisterView.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		20FBE97728BC43C600609687 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				20FBE97828BC43D800609687 /* Validations.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,8 +294,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				20FBE78928BBAD2400609687 /* Persistence.swift in Sources */,
-				20FBE78228BBAD2300609687 /* ContentView.swift in Sources */,
+				20FBE7B228BBEC5B00609687 /* RegisterView.swift in Sources */,
+				20FBE78228BBAD2300609687 /* HomeView.swift in Sources */,
 				20FBE78028BBAD2300609687 /* Connect_ONG_MobileApp.swift in Sources */,
+				20FBE97928BC43D800609687 /* Validations.swift in Sources */,
 				20FBE78C28BBAD2400609687 /* Connect_ONG_Mobile.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
