@@ -8,12 +8,14 @@
 import SwiftUI
 import CoreData
 
-let widthScreen = UIScreen.main.bounds.width
-let heightScreen = UIScreen.main.bounds.height
+public let widthScreen = UIScreen.main.bounds.width
+public let heightScreen = UIScreen.main.bounds.height
 
 public var isLargeScreen: Bool {
     heightScreen > 720
 }
+
+private let service = Service()
 
 struct HomeView: View {
     @State var email = ""
@@ -138,3 +140,26 @@ struct ContentView_Previews: PreviewProvider {
         HomeView()
     }
 }
+
+
+                        
+
+//NavigationView {
+//}
+//.padding()
+//.background(Color.cyan.opacity(0.35))
+//.ignoresSafeArea(edges: .bottom)
+//.frame(width: widthScreen, height: heightScreen, alignment: .center)
+//.navigationTitle("Cadastre-se")
+//.navigationBarTitleDisplayMode(.large)
+//.toolbar {
+//    ToolbarItem(placement: .navigationBarTrailing, content: {
+//        Button(
+//            action: { dismiss() },
+//            label: {
+//                Image("closeButton")
+//                    .frame(width: 3, height: 3)
+//            }
+//        )
+//    })
+//}
