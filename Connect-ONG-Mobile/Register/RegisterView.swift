@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SimpleToast
 
 struct RegisterView: View {
     
@@ -14,9 +15,9 @@ struct RegisterView: View {
     @State var isConfirmPasswordVisible = false
     @State var showRegister = false
     @FocusState var cepFocused: Bool
+    @State private var showToast = false
 
-    @Environment(\.dismiss)
-    private var dismiss
+    @Environment(\.presentationMode) var presentationMode
     
     var service = Service()
 
@@ -32,7 +33,6 @@ struct RegisterView: View {
                         self.registerUser.userAdress.zipCode = self.service.address.cep
                         self.registerUser.userAdress.neighborhood = self.service.address.bairro
                         self.registerUser.userAdress.state = self.service.address.uf
-                        
                     })
                 }
             },
@@ -158,6 +158,16 @@ struct RegisterView: View {
                 .keyboardType(.numberPad)
         }
     }
+    
+    let toast = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 2,
+        backdrop: .black.opacity(0.5),
+        animation: .default,
+        modifierType: .slide
+    )
+    
+    @State private var isLoading = false
 
     var body: some View {
         ZStack {
@@ -184,8 +194,17 @@ struct RegisterView: View {
                 .cornerRadius(15)
                 
                 Button(action: {
-                    service.register(user: registerUser) {
-                        dismiss()
+                    isLoading = true
+                    Task { await
+                        service.register(user: registerUser) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                isLoading.toggle()
+                                showToast.toggle()
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        }
                     }
                 }, label: {
                     Text("Cadastra-se")
@@ -199,7 +218,22 @@ struct RegisterView: View {
                 .padding()
             }
             .padding(24)
+            
+            if isLoading {
+            ProgressView()
+                .scaleEffect(3)
+            }
         }
+        .simpleToast(isPresented: $showToast, options: toast, content: {
+            HStack {
+                Image(systemName: "checkmark.circle")
+                    .foregroundColor(.green)
+                Text("Usuário Cadastrado com sucesso, \nfaça o seu login!")
+            }
+            .padding()
+            .background(.white)
+            .cornerRadius(14)
+        })
     }
     
     private func passwordRows() -> some View{

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20AE175128DFD8C100FA76B2 /* Register+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE175028DFD8C100FA76B2 /* Register+Models.swift */; };
+		20B43B4C28E8BBA1009E5184 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 20B43B4B28E8BBA1009E5184 /* SimpleToast */; };
 		20F3B08328C939D1008DF964 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3B08228C939D1008DF964 /* Service.swift */; };
 		20FBE78028BBAD2300609687 /* Connect_ONG_MobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE77F28BBAD2300609687 /* Connect_ONG_MobileApp.swift */; };
 		20FBE78228BBAD2300609687 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE78128BBAD2300609687 /* HomeView.swift */; };
@@ -63,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B43B4C28E8BBA1009E5184 /* SimpleToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +195,9 @@
 			dependencies = (
 			);
 			name = "Connect-ONG-Mobile";
+			packageProductDependencies = (
+				20B43B4B28E8BBA1009E5184 /* SimpleToast */,
+			);
 			productName = "Connect-ONG-Mobile";
 			productReference = 20FBE77C28BBAD2300609687 /* Connect-ONG-Mobile.app */;
 			productType = "com.apple.product-type.application";
@@ -265,6 +270,9 @@
 				Base,
 			);
 			mainGroup = 20FBE77328BBAD2300609687;
+			packageReferences = (
+				20B43B4A28E8BBA1009E5184 /* XCRemoteSwiftPackageReference "SimpleToast" */,
+			);
 			productRefGroup = 20FBE77D28BBAD2300609687 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -639,6 +647,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		20B43B4A28E8BBA1009E5184 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sanzaru/SimpleToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		20B43B4B28E8BBA1009E5184 /* SimpleToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20B43B4A28E8BBA1009E5184 /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			productName = SimpleToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		20FBE78A28BBAD2400609687 /* Connect_ONG_Mobile.xcdatamodeld */ = {

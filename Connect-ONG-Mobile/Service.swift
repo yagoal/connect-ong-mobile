@@ -12,7 +12,7 @@ import Foundation
 class Service: ObservableObject {
     @Published var registerUser = RegisterUser()
 
-    func register(user: RegisterUser, completion: @escaping () -> Void) {
+    func register(user: RegisterUser, completion: @escaping () -> Void) async {
         
         let baseURL = "http://localhost:8080/connect-ong"
         let path = "/RegisterJSON"
@@ -57,16 +57,18 @@ class Service: ObservableObject {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            guard let data = data else {
+                return
+            }
+
             do {
-                if let data = data {
-                    let result = try JSONDecoder().decode(RegisterUser.self, from: data)
-                    print(result)
-                } else {
-                    print ("No data")
-                }
+                let result = try JSONDecoder().decode(RegisterUser.self, from: data)
+                print(result)
             } catch (let error) {
                 print("error:", error.localizedDescription)
             }
+            completion()
         }.resume()
 
     }
@@ -92,7 +94,6 @@ class Service: ObservableObject {
             do {
                 let result = try JSONDecoder().decode(Address.self, from: data)
                 self.address = result
-                print(self.address)
             } catch {
                 print (error.localizedDescription)
             }
