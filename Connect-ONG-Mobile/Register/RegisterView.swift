@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SimpleToast
+import SwiftUITooltip
 
 struct RegisterView: View {
     
@@ -46,23 +47,33 @@ struct RegisterView: View {
 
     private func makeFormRow(
         title: String,
+        invalidLabel: String = "",
         placeHolder: String,
+        invalidLabelVisible: Binding<Bool> = .constant(false),
         bind: Binding<String>,
-        isCep: Bool = false,
-        isGender: Bool = false
+        isCep: Bool = false
     ) -> some View {
         return VStack(alignment: .leading, spacing: isLargeScreen ? 20 : 10) {
             VStack(alignment: .leading) {
-                Text(title)
-                    .foregroundColor(.blue)
-                    .fontWeight(.semibold)
-                    .frame(height: isLargeScreen ? 35 : 10)
+                HStack {
+                    Text(title)
+                        .foregroundColor(.blue)
+                        .fontWeight(.semibold)
+                        .frame(height: isLargeScreen ? 35 : 10)
+                    Spacer()
+                    if invalidLabelVisible.wrappedValue {
+                    Text(invalidLabel)
+                        .foregroundColor(.red)
+                        .fontWeight(.bold)
+                        .font(.headline)
+                        .frame(alignment: .leading)
+                    }
+                }
 
                 HStack{
                     TextField(placeHolder, text: bind)
                         .autocapitalization(.none)
                     if isCep { searchAddressButton() }
-                    if isGender {  makeGender() }
                 }
             }
             .padding()
@@ -145,15 +156,31 @@ struct RegisterView: View {
     }
     
     private func personalDataStacks() -> some View {
-        VStack{
-            makeFormRow(title: "Email", placeHolder: "Digite seu e-mail", bind: $registerUser.email)
-                .keyboardType(.emailAddress)
+        VStack(alignment: .leading) {
+            makeFormRow(
+                title: "Email",
+                invalidLabel: "E-mail Inválido",
+                placeHolder: "Digite seu e-mail",
+                invalidLabelVisible: $invalidEmail,
+                bind: $registerUser.email
+            )
+            .keyboardType(.emailAddress)
 
             makeFormRow(title: "Nome completo", placeHolder: "Digite nome completo", bind: $registerUser.name)
+
             makeGender()
-            makeFormRow(title: "CPF", placeHolder: "Digite seu CPF", bind: $registerUser.document)
-                .keyboardType(.numberPad)
+
+            makeFormRow(
+                title: "CPF",
+                invalidLabel: "CPF Inválido",
+                placeHolder: "Digite seu CPF",
+                invalidLabelVisible: $invalidCPF,
+                bind: $registerUser.document
+            )
+            .keyboardType(.numberPad)
+            
             makeDateRow()
+
             makeFormRow(title: "Telefone", placeHolder: "Digite seu Telefone", bind: $registerUser.telefone)
                 .keyboardType(.numberPad)
         }
@@ -168,6 +195,61 @@ struct RegisterView: View {
     )
     
     @State private var isLoading = false
+    @State private var hasError = false
+    @State private var invalidCPF = false
+    @State private var invalidEmail = false
+    @State private var invalidForms = false
+    
+    private func registerActionButton() {
+        
+        var errors = 0
+
+        if !isValidEmailAddr(strToValidate: registerUser.email) {
+            errors += 1
+            invalidEmail = true
+        }
+
+        if !registerUser.document.isCPF {
+            errors += 1
+            invalidCPF = true
+        }
+        
+        if !isPasswordValid(registerUser.password) {
+            errors += 1
+            invalidLabelPassword = true
+        }
+        
+        if registerUser.password != registerUser.confirmPassword {
+            errors += 1
+            invalidLabelConfirmPassword = true
+        }
+
+        guard errors == 0 else {
+            invalidForms = true
+            return
+        }
+
+        isLoading = true
+        invalidCPF = false
+        Task { await
+            service.register(
+                user: registerUser,
+                completion: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        isLoading.toggle()
+                        showToast.toggle()
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+            },
+                completionError: {
+                    isLoading = false
+                    hasError = true
+                }
+            )
+        }
+    }
 
     var body: some View {
         ZStack {
@@ -194,18 +276,7 @@ struct RegisterView: View {
                 .cornerRadius(15)
                 
                 Button(action: {
-                    isLoading = true
-                    Task { await
-                        service.register(user: registerUser) {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                isLoading.toggle()
-                                showToast.toggle()
-                            }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                        }
-                    }
+                    registerActionButton()
                 }, label: {
                     Text("Cadastra-se")
                         .foregroundColor(.white)
@@ -225,25 +296,48 @@ struct RegisterView: View {
             }
         }
         .simpleToast(isPresented: $showToast, options: toast, content: {
-            HStack {
-                Image(systemName: "checkmark.circle")
-                    .foregroundColor(.green)
-                Text("Usuário Cadastrado com sucesso, \nfaça o seu login!")
-            }
-            .padding()
-            .background(.white)
-            .cornerRadius(14)
+            stackToast(imageName: "checkmark.circle", message: "Usuário Cadastrado com sucesso, \nfaça o seu login!", color: .green)
         })
+        .simpleToast(isPresented: $invalidForms, options: toast, content: {
+            stackToast(imageName: "x.circle", message: "Dados inválidos, corrija-os!")
+        })
+        .simpleToast(isPresented: $hasError, options: toast, content: {
+            stackToast(imageName: "x.circle", message: "Ocorreu um erro, tente novamente!")
+        })
+        
+    }
+
+    private func stackToast(imageName: String, message: String, color: Color = .red) -> some View {
+        HStack {
+            Image(systemName: imageName)
+                .foregroundColor(color)
+            Text(message)
+        }
+        .padding()
+        .background(.white)
+        .cornerRadius(14)
     }
     
-    private func passwordRows() -> some View{
+    @State private var invalidLabelPassword = false
+    @State private var invalidLabelConfirmPassword = false
+
+    private func passwordRows() -> some View {
         VStack {
             VStack(alignment: .leading) {
-                Text("Senha")
-                    .foregroundColor(.blue)
-                    .fontWeight(.semibold)
-                    .frame(height: isLargeScreen ? 35 : 10)
-
+                HStack {
+                    Text("Senha")
+                        .foregroundColor(.blue)
+                        .fontWeight(.semibold)
+                        .frame(height: isLargeScreen ? 35 : 10)
+                    Spacer()
+                    if invalidLabelPassword {
+                        Text("Senha inválida")
+                            .foregroundColor(.red)
+                            .fontWeight(.bold)
+                            .font(.headline)
+                            .frame(alignment: .leading)
+                    }
+                }
                 HStack {
                     if isPasswordVisible {
                         TextField("Digite sua senha", text: $registerUser.password)
@@ -265,10 +359,20 @@ struct RegisterView: View {
             .keyboardType(.asciiCapable)
             
             VStack(alignment: .leading) {
-                Text("Verificação de senha")
-                    .foregroundColor(.blue)
-                    .fontWeight(.semibold)
-                    .frame(height: isLargeScreen ? 35 : 10)
+                HStack {
+                    Text("Verificação de senha")
+                        .foregroundColor(.blue)
+                        .fontWeight(.semibold)
+                        .frame(height: isLargeScreen ? 35 : 10)
+                    Spacer()
+                    if invalidLabelConfirmPassword {
+                        Text("Os campos devem ser iguais")
+                            .foregroundColor(.red)
+                            .fontWeight(.bold)
+                            .font(.headline)
+                            .frame(alignment: .leading)
+                    }
+                }
 
                 HStack {
                     if isConfirmPasswordVisible {

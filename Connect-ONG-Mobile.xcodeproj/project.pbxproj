@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202DE4BF28EA08250006912C /* SwiftUITooltip in Frameworks */ = {isa = PBXBuildFile; productRef = 202DE4BE28EA08250006912C /* SwiftUITooltip */; };
 		20AE175128DFD8C100FA76B2 /* Register+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE175028DFD8C100FA76B2 /* Register+Models.swift */; };
 		20B43B4C28E8BBA1009E5184 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 20B43B4B28E8BBA1009E5184 /* SimpleToast */; };
 		20F3B08328C939D1008DF964 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3B08228C939D1008DF964 /* Service.swift */; };
@@ -64,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				202DE4BF28EA08250006912C /* SwiftUITooltip in Frameworks */,
 				20B43B4C28E8BBA1009E5184 /* SimpleToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +199,7 @@
 			name = "Connect-ONG-Mobile";
 			packageProductDependencies = (
 				20B43B4B28E8BBA1009E5184 /* SimpleToast */,
+				202DE4BE28EA08250006912C /* SwiftUITooltip */,
 			);
 			productName = "Connect-ONG-Mobile";
 			productReference = 20FBE77C28BBAD2300609687 /* Connect-ONG-Mobile.app */;
@@ -272,6 +275,7 @@
 			mainGroup = 20FBE77328BBAD2300609687;
 			packageReferences = (
 				20B43B4A28E8BBA1009E5184 /* XCRemoteSwiftPackageReference "SimpleToast" */,
+				202DE4BD28EA08250006912C /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */,
 			);
 			productRefGroup = 20FBE77D28BBAD2300609687 /* Products */;
 			projectDirPath = "";
@@ -649,6 +653,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		202DE4BD28EA08250006912C /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quassum/SwiftUI-Tooltip";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		20B43B4A28E8BBA1009E5184 /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sanzaru/SimpleToast";
@@ -660,6 +672,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		202DE4BE28EA08250006912C /* SwiftUITooltip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 202DE4BD28EA08250006912C /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */;
+			productName = SwiftUITooltip;
+		};
 		20B43B4B28E8BBA1009E5184 /* SimpleToast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 20B43B4A28E8BBA1009E5184 /* XCRemoteSwiftPackageReference "SimpleToast" */;
