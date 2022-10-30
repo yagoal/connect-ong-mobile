@@ -34,6 +34,7 @@ struct Address: Codable {
     var cep: String
     var logradouro: String
     var bairro: String
+    var localidade: String
     var uf: String
-    static let empty = Self.init(cep: "", logradouro: "", bairro: "", uf: "")
+    static let empty = Self.init(cep: "", logradouro: "", bairro: "", localidade: "", uf: "")
 }

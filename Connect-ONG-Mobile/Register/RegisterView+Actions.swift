@@ -52,11 +52,11 @@ extension RegisterView {
             service.register(
                 user: registerUser,
                 completion: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         isLoading.toggle()
                         showToast.toggle()
                     }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         presentationMode.wrappedValue.dismiss()
                     }
             },

@@ -25,10 +25,8 @@ struct RegisterView: View {
     @State internal var invalidLabelConfirmPassword = false
 
     @Environment(\.presentationMode) var presentationMode
-    
-    var service = Service()
 
-    
+    var service = Service()
 
     var body: some View {
         ZStack {
@@ -88,7 +86,7 @@ struct RegisterView: View {
     }
 }
 
-struct registerPreview: PreviewProvider {
+struct RegisterPreview: PreviewProvider {
     static var previews: some View {
         RegisterView()
     }

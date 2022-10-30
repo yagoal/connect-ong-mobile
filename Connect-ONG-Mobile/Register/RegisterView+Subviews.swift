@@ -83,12 +83,13 @@ extension RegisterView {
             action: {
                 DispatchQueue.main.async {
                     let cep = registerUser.userAdress.address.cep
-                    service.getAddress(cep: cep, completion: {
-                        self.registerUser.userAdress.street = self.service.address.logradouro
-                        self.registerUser.userAdress.zipCode = self.service.address.cep
-                        self.registerUser.userAdress.neighborhood = self.service.address.bairro
-                        self.registerUser.userAdress.state = self.service.address.uf
-                    })
+                    service.getAddress(cep: cep) {
+                        registerUser.userAdress.street = service.address.logradouro
+                        registerUser.userAdress.zipCode = service.address.cep
+                        registerUser.userAdress.neighborhood = service.address.bairro
+                        registerUser.userAdress.state = service.address.uf
+                        registerUser.userAdress.city = service.address.localidade
+                    }
                 }
             },
             label: {
@@ -168,6 +169,7 @@ extension RegisterView {
             makeFormRow(title: "Logradouro", placeHolder: "Busque utilizando o CEP", bind: $registerUser.userAdress.street)
             makeFormRow(title: "Número", placeHolder: "Digite o número", bind: $registerUser.userAdress.number)
             makeFormRow(title: "Bairro", placeHolder: "Busque utilizando o CEP", bind: $registerUser.userAdress.neighborhood)
+            makeFormRow(title: "Cidade", placeHolder: "Busque utilizando o CEP", bind: $registerUser.userAdress.city)
             makeFormRow(title: "UF", placeHolder: "Busque utilizando o CEP", bind: $registerUser.userAdress.state)
         }
     }

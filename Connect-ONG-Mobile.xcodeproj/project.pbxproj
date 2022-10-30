@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		202DE4BF28EA08250006912C /* SwiftUITooltip in Frameworks */ = {isa = PBXBuildFile; productRef = 202DE4BE28EA08250006912C /* SwiftUITooltip */; };
 		202DE4C328EA6DAD0006912C /* RegisterView+Subviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DE4C228EA6DAD0006912C /* RegisterView+Subviews.swift */; };
 		202DE4C528EAFDD10006912C /* RegisterView+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202DE4C428EAFDD10006912C /* RegisterView+Actions.swift */; };
+		205CF45F28F719ED00EE1DEF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205CF45E28F719ED00EE1DEF /* ProfileView.swift */; };
+		205CF46128F7442200EE1DEF /* Login+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205CF46028F7442200EE1DEF /* Login+Models.swift */; };
 		20AE175128DFD8C100FA76B2 /* Register+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE175028DFD8C100FA76B2 /* Register+Models.swift */; };
-		20B43B4C28E8BBA1009E5184 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 20B43B4B28E8BBA1009E5184 /* SimpleToast */; };
 		20F3B08328C939D1008DF964 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F3B08228C939D1008DF964 /* Service.swift */; };
+		20F52E8E290EE508001DA508 /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 20F52E8D290EE508001DA508 /* SimpleToast */; };
+		20F52E90290EE50E001DA508 /* SwiftUITooltip in Frameworks */ = {isa = PBXBuildFile; productRef = 20F52E8F290EE50E001DA508 /* SwiftUITooltip */; };
+		20F52E94290EF7E4001DA508 /* AdoptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F52E93290EF7E4001DA508 /* AdoptionsView.swift */; };
+		20F52E96290EFA99001DA508 /* Animals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F52E95290EFA99001DA508 /* Animals.swift */; };
 		20FBE78028BBAD2300609687 /* Connect_ONG_MobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE77F28BBAD2300609687 /* Connect_ONG_MobileApp.swift */; };
 		20FBE78228BBAD2300609687 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE78128BBAD2300609687 /* HomeView.swift */; };
 		20FBE78428BBAD2400609687 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FBE78328BBAD2400609687 /* Assets.xcassets */; };
@@ -46,8 +50,13 @@
 /* Begin PBXFileReference section */
 		202DE4C228EA6DAD0006912C /* RegisterView+Subviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegisterView+Subviews.swift"; sourceTree = "<group>"; };
 		202DE4C428EAFDD10006912C /* RegisterView+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegisterView+Actions.swift"; sourceTree = "<group>"; };
+		205CF45E28F719ED00EE1DEF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		205CF46028F7442200EE1DEF /* Login+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Login+Models.swift"; sourceTree = "<group>"; };
 		20AE175028DFD8C100FA76B2 /* Register+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Register+Models.swift"; sourceTree = "<group>"; };
 		20F3B08228C939D1008DF964 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		20F52E8C290EE4F6001DA508 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		20F52E93290EF7E4001DA508 /* AdoptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptionsView.swift; sourceTree = "<group>"; };
+		20F52E95290EFA99001DA508 /* Animals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animals.swift; sourceTree = "<group>"; };
 		20FBE77C28BBAD2300609687 /* Connect-ONG-Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Connect-ONG-Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		20FBE77F28BBAD2300609687 /* Connect_ONG_MobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connect_ONG_MobileApp.swift; sourceTree = "<group>"; };
 		20FBE78128BBAD2300609687 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -69,8 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				202DE4BF28EA08250006912C /* SwiftUITooltip in Frameworks */,
-				20B43B4C28E8BBA1009E5184 /* SimpleToast in Frameworks */,
+				20F52E90290EE50E001DA508 /* SwiftUITooltip in Frameworks */,
+				20F52E8E290EE508001DA508 /* SimpleToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,13 +100,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		205CF45D28F7198700EE1DEF /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				205CF45E28F719ED00EE1DEF /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		20AE174F28DFD89800FA76B2 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				20F3B08228C939D1008DF964 /* Service.swift */,
 				20AE175028DFD8C100FA76B2 /* Register+Models.swift */,
+				205CF46028F7442200EE1DEF /* Login+Models.swift */,
+				20F52E95290EFA99001DA508 /* Animals.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		20F52E8B290EE4E3001DA508 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20F52E92290EF7AC001DA508 /* Adoptions */ = {
+			isa = PBXGroup;
+			children = (
+				20F52E93290EF7E4001DA508 /* AdoptionsView.swift */,
+			);
+			path = Adoptions;
 			sourceTree = "<group>";
 		};
 		20FBE77328BBAD2300609687 = {
@@ -107,6 +141,7 @@
 				20FBE79428BBAD2500609687 /* Connect-ONG-MobileTests */,
 				20FBE79E28BBAD2500609687 /* Connect-ONG-MobileUITests */,
 				20FBE77D28BBAD2300609687 /* Products */,
+				20F52E8B290EE4E3001DA508 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,10 +158,13 @@
 		20FBE77E28BBAD2300609687 /* Connect-ONG-Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				20AE174F28DFD89800FA76B2 /* Networking */,
 				20FBE97728BC43C600609687 /* Helpers */,
+				20AE174F28DFD89800FA76B2 /* Networking */,
 				20FBE7B028BBEC4400609687 /* Register */,
+				205CF45D28F7198700EE1DEF /* Profile */,
 				20FBE7AE28BBEBE800609687 /* Home */,
+				20F52E92290EF7AC001DA508 /* Adoptions */,
+				20F52E8C290EE4F6001DA508 /* Info.plist */,
 				20FBE77F28BBAD2300609687 /* Connect_ONG_MobileApp.swift */,
 				20FBE78328BBAD2400609687 /* Assets.xcassets */,
 				20FBE78828BBAD2400609687 /* Persistence.swift */,
@@ -204,8 +242,8 @@
 			);
 			name = "Connect-ONG-Mobile";
 			packageProductDependencies = (
-				20B43B4B28E8BBA1009E5184 /* SimpleToast */,
-				202DE4BE28EA08250006912C /* SwiftUITooltip */,
+				20F52E8D290EE508001DA508 /* SimpleToast */,
+				20F52E8F290EE50E001DA508 /* SwiftUITooltip */,
 			);
 			productName = "Connect-ONG-Mobile";
 			productReference = 20FBE77C28BBAD2300609687 /* Connect-ONG-Mobile.app */;
@@ -325,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F52E94290EF7E4001DA508 /* AdoptionsView.swift in Sources */,
 				20FBE78928BBAD2400609687 /* Persistence.swift in Sources */,
 				20FBE7B228BBEC5B00609687 /* RegisterView.swift in Sources */,
 				20FBE78228BBAD2300609687 /* HomeView.swift in Sources */,
@@ -334,7 +373,10 @@
 				202DE4C328EA6DAD0006912C /* RegisterView+Subviews.swift in Sources */,
 				202DE4C528EAFDD10006912C /* RegisterView+Actions.swift in Sources */,
 				20FBE78C28BBAD2400609687 /* Connect_ONG_Mobile.xcdatamodeld in Sources */,
+				205CF46128F7442200EE1DEF /* Login+Models.swift in Sources */,
+				205CF45F28F719ED00EE1DEF /* ProfileView.swift in Sources */,
 				20F3B08328C939D1008DF964 /* Service.swift in Sources */,
+				20F52E96290EFA99001DA508 /* Animals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +538,7 @@
 				DEVELOPMENT_TEAM = JNXAHZ4P2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Connect-ONG-Mobile/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -525,6 +568,7 @@
 				DEVELOPMENT_TEAM = JNXAHZ4P2R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Connect-ONG-Mobile/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -680,15 +724,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		202DE4BE28EA08250006912C /* SwiftUITooltip */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 202DE4BD28EA08250006912C /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */;
-			productName = SwiftUITooltip;
-		};
-		20B43B4B28E8BBA1009E5184 /* SimpleToast */ = {
+		20F52E8D290EE508001DA508 /* SimpleToast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 20B43B4A28E8BBA1009E5184 /* XCRemoteSwiftPackageReference "SimpleToast" */;
 			productName = SimpleToast;
+		};
+		20F52E8F290EE50E001DA508 /* SwiftUITooltip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 202DE4BD28EA08250006912C /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */;
+			productName = SwiftUITooltip;
 		};
 /* End XCSwiftPackageProductDependency section */
 

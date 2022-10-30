@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 public let widthScreen = UIScreen.main.bounds.width
 public let heightScreen = UIScreen.main.bounds.height
@@ -22,6 +21,9 @@ struct HomeView: View {
     @State var password = ""
     @State var isPasswordVisible = false
     @State var showRegister = false
+    @State var showProfile = false
+    
+    var service = Service()
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -87,7 +89,19 @@ struct HomeView: View {
                     })
                 }
 
-                Button(action: {}, label: {
+                Button(action: {
+                    DispatchQueue.main.async {
+                        service.getUser(
+                            login: email,
+                            password: password,
+                            completion: {
+                                self.showProfile = true
+                            },
+                            completionError: { }
+                        )
+                    }
+                        
+                }, label: {
                     Text("Acessar")
                         .foregroundColor(.white)
                         .fontWeight(.semibold)
@@ -117,21 +131,12 @@ struct HomeView: View {
         }
         .ignoresSafeArea(edges: .bottom)
         .frame(width: widthScreen, height: heightScreen, alignment: .center)
+        .fullScreenCover(isPresented: $showProfile) {
+            ProfileView(user: service.loginUser)
+        }
         .sheet(isPresented: $showRegister) {
             RegisterView()
         }
-    }
-}
-
-struct BlurView: UIViewRepresentable {
-    var style = UIBlurEffect.Style.regular
-
-    func makeUIView(context: Context) -> UIVisualEffectView {
-        return UIVisualEffectView(effect: UIBlurEffect(style: style))
-    }
-
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        uiView.effect = UIBlurEffect(style: style)
     }
 }
 
@@ -140,26 +145,3 @@ struct ContentView_Previews: PreviewProvider {
         HomeView()
     }
 }
-
-
-                        
-
-//NavigationView {
-//}
-//.padding()
-//.background(Color.cyan.opacity(0.35))
-//.ignoresSafeArea(edges: .bottom)
-//.frame(width: widthScreen, height: heightScreen, alignment: .center)
-//.navigationTitle("Cadastre-se")
-//.navigationBarTitleDisplayMode(.large)
-//.toolbar {
-//    ToolbarItem(placement: .navigationBarTrailing, content: {
-//        Button(
-//            action: { dismiss() },
-//            label: {
-//                Image("closeButton")
-//                    .frame(width: 3, height: 3)
-//            }
-//        )
-//    })
-//}
