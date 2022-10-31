@@ -10,6 +10,7 @@ import Foundation
 public class Service: ObservableObject {
 
     private(set) var loginUser = LoginUser()
+
     let baseURL = "http://localhost:8080/connect-ong"
 
     func getUser(
@@ -173,6 +174,8 @@ public class Service: ObservableObject {
         task.resume()
 
     }
+    
+    
 }
 
 public extension DateFormatter {

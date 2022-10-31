@@ -17,8 +17,8 @@ public var isLargeScreen: Bool {
 private let service = Service()
 
 struct HomeView: View {
-    @State var email = ""
-    @State var password = ""
+    @State var email = "br.yago@gmail.com"
+    @State var password = "12345678"
     @State var isPasswordVisible = false
     @State var showRegister = false
     @State var showProfile = false

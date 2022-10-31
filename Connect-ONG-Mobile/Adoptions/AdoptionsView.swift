@@ -10,6 +10,7 @@ import SwiftUI
 struct AdoptionsView: View {
 
     private let service = Service()
+    private let baseImgPath = "https://connect-ong-pa.herokuapp.com/"
 
     @State var animals: [AnimalData] = []
     var body: some View {
@@ -49,12 +50,21 @@ struct AdoptionsView: View {
 
     private func animalModal(animal: AnimalData) -> some View {
         VStack {
-            Image("noPhoto")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 250)
-                .ignoresSafeArea()
-                .padding()
+            if let imgPath = animal.imgPath {
+                AsyncImage(url: URL(string:  baseImgPath + imgPath))
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250, height: 320)
+                    .ignoresSafeArea()
+                    .padding(.horizontal)
+                Spacer(minLength: 40)
+            } else {
+                Image("noPhoto")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250, height: 250)
+                    .ignoresSafeArea()
+                    .padding(.horizontal)
+            }
             infoRow(title: "Nome", bind: animal.name)
             infoRow(title: "Sexo", bind: animal.genden)
             infoRow(title: "Raça", bind: animal.breed)
@@ -74,7 +84,7 @@ struct AdoptionsView: View {
             Text(bind)
                 .font(.headline)
         }
-        .padding(4)
+        .padding(6)
     }
 }
 
