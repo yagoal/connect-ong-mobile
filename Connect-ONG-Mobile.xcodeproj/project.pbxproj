@@ -17,6 +17,7 @@
 		20F52E90290EE50E001DA508 /* SwiftUITooltip in Frameworks */ = {isa = PBXBuildFile; productRef = 20F52E8F290EE50E001DA508 /* SwiftUITooltip */; };
 		20F52E94290EF7E4001DA508 /* AdoptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F52E93290EF7E4001DA508 /* AdoptionsView.swift */; };
 		20F52E96290EFA99001DA508 /* Animals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F52E95290EFA99001DA508 /* Animals.swift */; };
+		20F7A5A8291FCF8B008054D4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 20F7A5A7291FCF8B008054D4 /* Kingfisher */; };
 		20FBE78028BBAD2300609687 /* Connect_ONG_MobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE77F28BBAD2300609687 /* Connect_ONG_MobileApp.swift */; };
 		20FBE78228BBAD2300609687 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FBE78128BBAD2300609687 /* HomeView.swift */; };
 		20FBE78428BBAD2400609687 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FBE78328BBAD2400609687 /* Assets.xcassets */; };
@@ -78,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F7A5A8291FCF8B008054D4 /* Kingfisher in Frameworks */,
 				20F52E90290EE50E001DA508 /* SwiftUITooltip in Frameworks */,
 				20F52E8E290EE508001DA508 /* SimpleToast in Frameworks */,
 			);
@@ -244,6 +246,7 @@
 			packageProductDependencies = (
 				20F52E8D290EE508001DA508 /* SimpleToast */,
 				20F52E8F290EE50E001DA508 /* SwiftUITooltip */,
+				20F7A5A7291FCF8B008054D4 /* Kingfisher */,
 			);
 			productName = "Connect-ONG-Mobile";
 			productReference = 20FBE77C28BBAD2300609687 /* Connect-ONG-Mobile.app */;
@@ -320,6 +323,7 @@
 			packageReferences = (
 				20B43B4A28E8BBA1009E5184 /* XCRemoteSwiftPackageReference "SimpleToast" */,
 				202DE4BD28EA08250006912C /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */,
+				20F7A5A6291FCF8B008054D4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 20FBE77D28BBAD2300609687 /* Products */;
 			projectDirPath = "";
@@ -721,6 +725,14 @@
 				minimumVersion = 0.6.2;
 			};
 		};
+		20F7A5A6291FCF8B008054D4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -733,6 +745,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 202DE4BD28EA08250006912C /* XCRemoteSwiftPackageReference "SwiftUI-Tooltip" */;
 			productName = SwiftUITooltip;
+		};
+		20F7A5A7291FCF8B008054D4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20F7A5A6291FCF8B008054D4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 

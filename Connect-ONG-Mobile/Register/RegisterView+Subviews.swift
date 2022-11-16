@@ -37,6 +37,7 @@ extension RegisterView {
 
                 HStack{
                     TextField(placeHolder, text: bind)
+                        .foregroundColor(.black)
                         .autocapitalization(.none)
                     if isCep { searchAddressButton() }
                 }
@@ -180,7 +181,7 @@ extension RegisterView {
             hideAfter: 2,
             backdrop: .black.opacity(0.5),
             animation: .default,
-            modifierType: .slide
+            modifierType: .fade
         )
     }
 

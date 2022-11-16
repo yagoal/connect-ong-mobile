@@ -12,6 +12,7 @@ struct AnimalsData: Codable {
 }
 
 struct Animal: Codable, Equatable {
+    var id: Int
     var imgPath: String?
     var name = ""
     var gender = ""
@@ -19,14 +20,11 @@ struct Animal: Codable, Equatable {
     var weight: Double = 0
     var redempetionDate = ""
     var castration = false
-    
-    
-//    let teste = Animal(name: "Gold", gender: "M", breed: "SRD", weight: 3.2, redempetionDate: "13/04/2022", castration: true)
-
 }
 
 struct AnimalData: Identifiable {
     var id: UUID = .init()
+    var animalId: Int
     var imgPath: String?
     var name: String
     var genden: String
@@ -36,6 +34,7 @@ struct AnimalData: Identifiable {
     var castration: Bool
     
     init(animal: Animal) {
+        animalId = animal.id
         imgPath = animal.imgPath
         name = animal.name
         genden = animal.gender
@@ -45,5 +44,4 @@ struct AnimalData: Identifiable {
         castration = animal.castration
     }
 
-//    static let teste = AnimalData(animal: .teste)
 }

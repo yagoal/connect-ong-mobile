@@ -11,7 +11,7 @@ public class Service: ObservableObject {
 
     private(set) var loginUser = LoginUser()
 
-    let baseURL = "http://localhost:8080/connect-ong"
+    static let baseUrl = "https://connect-ong-pa.herokuapp.com"
 
     func getUser(
         login: String,
@@ -22,7 +22,7 @@ public class Service: ObservableObject {
 
         let path = "/UserLoginControllerJSON"
 
-        guard let url = URL(string: baseURL + path) else { return }
+        guard let url = URL(string: Service.baseUrl + path) else { return }
 
         let body : [String: String] = [
             "login": login,
@@ -94,7 +94,7 @@ public class Service: ObservableObject {
 
         let path = "/RegisterJSON"
 
-        guard let url = URL(string: baseURL + path) else { return }
+        guard let url = URL(string: Service.baseUrl + path) else { return }
 
         let address: [String: String] = [
             "street": user.userAdress.street,
@@ -151,7 +151,7 @@ public class Service: ObservableObject {
 
         let path = "/OngAnimalsControllerJSON"
 
-        guard let url = URL(string: baseURL + path) else {
+        guard let url = URL(string: Service.baseUrl + path) else {
             return
         }
 
@@ -172,6 +172,42 @@ public class Service: ObservableObject {
         }
 
         task.resume()
+
+    }
+    
+    func toAdopt(
+        userId: Int,
+        animalId: Int,
+        completion: @escaping () -> Void,
+        completionError: @escaping () -> Void
+    ) async {
+
+        let path = "/OngAnimalsControllerJSON"
+
+        guard let url = URL(string: Service.baseUrl + path) else { return }
+
+        let body: [String: Any] = [
+            "idAnimal": animalId,
+            "idUser": userId
+        ]
+
+        let finalBody = try? JSONSerialization.data(withJSONObject: body)
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.httpBody = finalBody
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+
+            if let error = error {
+                completionError()
+                print("error:", error.localizedDescription)
+                return
+            }
+
+            completion()
+        }.resume()
 
     }
     

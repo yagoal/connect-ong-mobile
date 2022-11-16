@@ -8,6 +8,8 @@
 import Foundation
 
 struct LoginUser: Codable {
+    var id = 0
+    var imgPath = ""
     var name = ""
     var email = ""
     var gender = ""

@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ProfileView: View {
-    
+
     var user: LoginUser
-    
+    public static var userId = 0
+
     init(user: LoginUser) {
         self.user = user
+        Self.userId = user.id
     }
-    
+
     @State var showAdoptions = false
+    @State var showSheetLogout = false
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -25,7 +30,7 @@ struct ProfileView: View {
                 .frame(width: widthScreen)
                 .ignoresSafeArea()
                 .opacity(0.3)
-            VStack {
+            VStack(spacing: 10) {
                 Text("Meu Perfil")
                     .foregroundColor(.primary)
                     .fontWeight(.bold)
@@ -33,30 +38,114 @@ struct ProfileView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: isLargeScreen ? 70 : 45)
                 ScrollView {
-                    personalInfosStack()
+                    renderPhoto().padding()
                     Spacer(minLength: 25)
-                    addressStack()
+                    personalInfosStack().padding()
                     Spacer(minLength: 25)
-                    contactStack()
+                    addressStack().padding()
+                    Spacer(minLength: 25)
+                    contactStack().padding()
                 }
                 .padding(.vertical)
-                Button(action: {
-                    showAdoptions = true
-                }, label: {
-                    Text("Adotar")
-                        .foregroundColor(.white)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: isLargeScreen ? 70 : 45)
-                        .background(Color.blue.opacity(0.9))
-                        .cornerRadius(8)
-                })
-                .padding(.top)
-                .padding(.horizontal)
+                HStack {
+                    Button(action: {
+                        showSheetLogout = true
+                    }, label: {
+                        Text("Deslogar")
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: isLargeScreen ? 60 : 45)
+                            .background(Color.red.opacity(0.9))
+                            .cornerRadius(10)
+                            .padding()
+                    })
+                    .padding(.top)
+                    .padding(.horizontal)
+                    Button(action: {
+                        showAdoptions = true
+                    }, label: {
+                        Text("Animais Disponíveis")
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: isLargeScreen ? 60 : 45)
+                            .background(Color.blue.opacity(0.9))
+                            .cornerRadius(10)
+                            .padding()
+                    })
+                    .padding(.top)
+                    .padding(.horizontal)
+                }
+                .sheet(isPresented: $showSheetLogout) {
+                    if #available(iOS 16.0, *) {
+                        VStack {
+                            Text("Tem certeza que deseja deslogar?")
+                                .padding()
+                            HStack(alignment: .center) {
+                                Button(action: {
+                                    showSheetLogout = false
+                                }, label: {
+                                    Text("Não")
+                                        .foregroundColor(.white)
+                                        .fontWeight(.semibold)
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: isLargeScreen ? 60 : 45)
+                                        .background(Color.red.opacity(0.9))
+                                        .cornerRadius(8)
+                                })
+                                .padding(.top)
+                                .padding(.horizontal)
+                                Button(action: {
+                                    showSheetLogout = false
+                                    presentationMode.wrappedValue.dismiss()
+                                }, label: {
+                                    Text("Sim")
+                                        .foregroundColor(.white)
+                                        .fontWeight(.semibold)
+                                        .frame(maxWidth: .infinity)
+                                        .frame(height: isLargeScreen ? 60 : 45)
+                                        .background(Color.blue.opacity(0.9))
+                                        .cornerRadius(8)
+                                })
+                                .padding(.top)
+                                .padding(.horizontal)
+                            }
+                        }
+                        .presentationDetents([.height(200), .medium])
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                }
             }
+            .background(Color.white.opacity(0.6))
         }
         .sheet(isPresented: $showAdoptions) {
             AdoptionsView()
+        }
+    }
+    
+    private func renderPhoto() -> some View {
+        print(Service.baseUrl + user.imgPath)
+        return VStack {
+            if !user.imgPath.isEmpty {
+                AsyncImage(url: URL(string: Service.baseUrl + "/\(user.imgPath)"), content: { image in
+                        image.resizable()
+                        }, placeholder: {
+                            ProgressView()
+                                .scaleEffect(2)
+                        })
+                            .frame(width: 350, height: 350)
+                            .clipShape(Circle())
+                Spacer(minLength: 10)
+            } else {
+                Image("noPhoto")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 250, height: 250)
+                    .ignoresSafeArea()
+                    .padding(.horizontal)
+            }
         }
     }
 
@@ -114,9 +203,6 @@ struct ProfileView: View {
         }
         .padding(4)
     }
-    
-    
-
 }
 
 struct ProfilePreviews: PreviewProvider {
